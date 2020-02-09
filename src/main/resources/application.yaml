@@ -1,0 +1,8 @@
+micronaut:
+  application:
+    name: micronaut
+  server:
+    cors:
+      enabled: true
+jackson:
+  serializationInclusion: ALWAYS
