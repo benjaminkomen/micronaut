@@ -1,0 +1,28 @@
+steps:
+  # Step 1: Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/micronaut:$COMMIT_SHA', '.']
+
+  # Step 2: Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/micronaut:$COMMIT_SHA']
+
+  # Step 3: Deploy container image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'cloudrun'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/micronaut:$COMMIT_SHA'
+      - '--region'
+      - 'europe-west1'
+      - '--platform'
+      - 'managed'
+      - '--memory',
+      - '1Gi',
+      images:
+        - 'gcr.io/$PROJECT_ID/micronaut:$COMMIT_SHA'
+
+
+  ## gcloud run deploy --image gcr.io/micronaut-cloudrun/micronaut --platform managed --region europe-west1 --memory 1Gi
