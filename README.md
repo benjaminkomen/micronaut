@@ -1,6 +1,11 @@
 # Micronaut GraalVM
 
-This repository tries to get Micronaut with GraalVM running on Cloud Run.
+This is a simple Micronaut webserver compiled with GraalVM running on Cloud Run. It exposes
+2 endpoints:
+- /api/hello
+- /api/fb
+
+You can see it live in action [here](https://micronaut-ymlwsbp6oq-ew.a.run.app/api/hello).
 
 ## Instructions
 ### Run locally
@@ -14,3 +19,10 @@ with `docker build -t micronaut .` and then run it with
 via your browser on http://localhost:8080.
 
 ### Run in Google Cloud Run
+You can do the following 2 command lines one after the other:
+```bash
+gcloud builds submit --tag gcr.io/micronaut-cloudrun/micronaut --machine-type=n1-highcpu-32 --timeout 2400s .
+gcloud run deploy --image gcr.io/micronaut-cloudrun/micronaut --platform managed --region europe-west1 --memory 1Gi
+```
+
+Or you can make use of the [cloud build](./cloudbuild.yaml) file to automate a trigger from github.

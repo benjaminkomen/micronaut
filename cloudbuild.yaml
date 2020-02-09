@@ -23,6 +23,3 @@ steps:
       - '1Gi',
       images:
         - 'gcr.io/$PROJECT_ID/micronaut:$COMMIT_SHA'
-
-
-  ## gcloud run deploy --image gcr.io/micronaut-cloudrun/micronaut --platform managed --region europe-west1 --memory 1Gi
