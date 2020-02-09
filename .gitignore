@@ -11,5 +11,6 @@ hs_err_pid*
 .idea/
 *.properties
 target/
+dependency-reduced-pom.xml
 !maven-wrapper.properties
 !maven-wrapper.jar
